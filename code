@@ -1,0 +1,22 @@
+import pandas as pd
+df=pd.read_csv("USA__Housing.csv")
+df.head()
+df.isnull().sum()
+x=df[["Avg. Area Income","Avg. Area House Age","Avg. Area Number of Rooms","Avg. 
+Area Number of Bedrooms","Area Population"]]
+x
+y=df["price"]
+yfrom sklearn.model_selection import train_test_split
+x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.2,random_state=100)
+x_test
+y_train
+from sklearn.linear_model import LinearRegression
+lr=LinearRegression()
+lr.fit(x_train,y_train)
+y_pred=lr.predict(x_test)
+y_pred
+from sklearn import metrics
+mse=metrics.mean_squared_error(y_test,y_pred)
+mse
+r2=metrics.r2_score(y_test,y_pred)
+r2
